@@ -1,0 +1,41 @@
+# 1. Core project details
+project:
+  title: "Explainable Adaptive Immune System Modeling"
+  category: "ImmunoInformatics"
+  abbr: "XAI4Immuno"
+  desc: "Using Explainable Machine Learning to Unreavel Adaptive Immune System Mechanism."
+  figure: "images/tcrpmhcstruct.png"
+
+lab:
+  name: "Mettu Landry Lab"
+  icon: "images/jellyroll.png"
+
+document:
+  path: "./README.md"
+  centered: false
+  footer: "2026 &copy; Mettu Landry Lab<br>CC BY 4.0"
+
+nav:
+  Home: "/"
+  Projects: "/projects/"
+  XAI4Immuno: null
+
+papers:
+  - year: 2026
+    month: "April"
+    title: "Quantifying Cross-Attention Interaction in Transformers for Interpreting TCR-pMHC Binding"
+    publication: "ICLR"
+    authors: "J.Li, et al."
+    link: "/papers/ICLR2026QCAI/"
+  - year: 2026
+    month: "April"
+    title: "TCR-EML: Explainable Model Layers for TCR-pMHC Prediction"
+    publication: "LMRL@ICLR"
+    authors: "J.Li, et al."
+    link: "/papers/LMRL2026TCREML/"
+  - year: 2025
+    month: "December"
+    title: "Rational Multi-Modal Transformers for TCR-pMHC Prediction"
+    publication: "ACM-BCB"
+    authors: "J.Li, et al."
+    link: "/papers/BCB2025EGM/"

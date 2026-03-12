@@ -1,0 +1,217 @@
+:root {
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-dserif: 'DM Serif Text', serif;
+    --hero-bg-color: #f5f5f5; /* light gray */
+    --hero-text-color: #222;  /* almost black */
+}
+
+h1, h2, h3, h4 { font-family: var(--font-dserif); }
+body {
+    font-family: var(--font-sans);
+}
+
+.is-dmserif {
+    font-family: var(--font-dserif);
+}
+
+.is-mono {
+    font-family: var(--font-mono);
+}
+/* CSS is generally kept the same as it's small and well-structured */
+.hover-expand .text {
+    opacity: 0;
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: opacity 0.3s ease, max-width 0.3s ease;
+    display: inline-block;
+    vertical-align: middle;
+}
+.hover-expand:hover .text {
+    opacity: 1;
+    max-width: 200px; /* adjust for text length */
+}
+.sup {
+    font-size: 0.7em;
+    vertical-align: super;
+}
+/* Optional: if you want symbols too */
+.sup[data-symbol="plus"]::after { content: "⁺"; }
+.sup[data-symbol="minus"]::after { content: "⁻"; }
+.sup[data-symbol="star"]::after { content: "*"; /* or × */ }
+.sup[data-number="1"]::after { content: "¹"; }
+.sup[data-number="2"]::after { content: "²"; }
+.sup[data-number="3"]::after { content: "³"; }
+.sup[data-number="4"]::after { content: "⁴"; }
+.sup[data-number="5"]::after { content: "⁵"; }
+.sup[data-number="6"]::after { content: "⁶"; }
+.sup[data-number="7"]::after { content: "⁷"; }
+.sup[data-number="8"]::after { content: "⁸"; }
+.sup[data-number="9"]::after { content: "⁹"; }
+.sup[data-number="0"]::after { content: "⁰"; }
+
+/* Floating Navbar Styles */
+.navbar-container {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    z-index: 1000;
+    border-radius: 2rem;
+    border-color: lightgrey;
+    border-width: 0.5pt;
+    border-style: solid;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+    overflow: hidden;
+}
+.custom-frosted-navbar {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    border-radius: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: 100%;
+}
+.custom-frosted-navbar .navbar-item {
+    background-color: transparent !important;
+}
+
+/* --- Frosted Glass Style for Button --- */
+.frosted-button {
+    /* Ensure the outlined button background is transparent for the blur to show */
+    background-color: transparent !important;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Optional: Apply a subtle effect on hover */
+.frosted-button:hover {
+    background-color: rgba(50, 152, 220, 0.1) !important; /* Semi-transparent link color background */
+}
+
+/* --- Dynamic Section Indicator Styles (NEW) --- */
+.navbar-center {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+    min-width: 0; 
+}
+
+#section-indicator-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Base style for all animated section links */
+.section-nav-link {
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 15vw; /* Prevent previous/next from taking too much space */
+}
+
+/* Style for the current (active) section */
+.section-nav-link.is-active {
+    transform: scale(1.05);
+    max-width: 30vw; /* Give active link more space */
+}
+
+#citation-content {
+    white-space: pre-wrap;       /* Allow wrapping while preserving whitespace */
+    word-wrap: break-word;       /* Break long words if needed */
+    overflow-wrap: break-word;   /* Modern alternative for word-wrap */
+    max-width: 100%;             /* Don’t exceed parent’s width */
+    box-sizing: border-box;      /* Include padding in total width */
+}
+
+.hero-bordered {
+    border-top: 2px solid #ccc;   /* top rule */
+    border-bottom: 2px solid #ccc; /* bottom rule */
+}
+
+.hero-body-relative {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Right-pinned image container */
+.hero-image-right {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-right: 1.5rem;
+}
+
+/* Image sizing */
+.hero-image-right img {
+    max-height: 100%;
+    max-width: 50vw;
+    object-fit: contain;
+}
+
+/* Static vertical fade (top & bottom) */
+.fade-vertical {
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 18%,
+        black 82%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 18%,
+        black 82%,
+        transparent 100%
+    );
+}
+
+.paper-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(92, 92, 92, 0.75);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.paper-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 36px rgba(92, 92, 92, 0.5);
+}
+
+.paper-card .card-content {
+    flex-grow: 1;
+}
+
+.paper-card .card-footer {
+    justify-content: flex-end;
+}
+
+.colored-underline {
+    text-decoration: none;
+    border-bottom: 2px solid var(--bulma-link);
+    display: inline-block;
+    padding-bottom: 0.025em;
+}

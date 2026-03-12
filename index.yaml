@@ -1,0 +1,80 @@
+main:
+  title: "Discover Science<br>with Explainable AI"
+  name: "Mettu Landry Lab"
+  icons:
+    - img: "/assets/images/icon_long.png"
+      link: "/"
+    - img: "/assets/images/tulane.png"
+      link: "https://tulane.edu/"
+  desc: "Discover Underly Scientific Mechanisms with<br>Explainable Machine Learning."
+  bgimg: "/assets/images/background.png"
+
+about:
+  title: "About This Lab"
+  desc: |
+    <p>
+    The <strong>Mettu Landry Lab</strong> is a research lab led by Dr. Mettu from the Department of Computer Science at Tulane University.
+    We are discovering scientific problems (e.g. immunology) using computational methods and explainable machine learning.
+    Explore our work and discover how we are pushing the boundaries of research in these cutting-edge areas.
+    </p>
+
+news:
+  title: "Latest News"
+  items:
+    - title: New Paper in ICLR 2026
+      date: MARCH 12, 2026
+      desc: Our work Quantifying Cross-Attention Interaction (QCAI) in Transformers for Interpreting TCR-pMHC Binding has been accepted by ICLR 2026.
+      link: "/papers/ICLR2026QCAI/"
+    - title: New Paper in LMRL@ICLR 2026
+      date: MARCH 12, 2026
+      desc: "Our work TCR-EML: Explainable Model Layers for TCR-pMHC Prediction has been accepted by LMRL@ICLR 2026"
+      link: "/papers/LRML2026TCREML/"
+    - title: APLSuite is Ready
+      date: MARCH 12, 2026
+      desc: We are excited to announce that we have built APLSuite, which is a webui-based antigen processing likelihood calculation tool.
+      link: "/blogs/APLSuite/"
+
+project:
+  title: "Research Projects"
+  items:
+    - title: Antigen Processing Likelihood
+      tag: ImmunoInformatics
+      desc: Illuminating Epitope Presentation with Conformation Computation.
+      link: /projects/APL/
+    - title: Explainable Adaptive Immune System Modeling
+      tag: ImmunoInformatics
+      desc: Using Explainable Machine Learning to Unreavel Adaptive Immune System Mechanism.
+      link: /projects/AI4Immuno/
+    - title: Learing from Explainable Machine Learning
+      tag: Machine Learning
+      desc: Discovering Science with Explainable Machine Learning Methods.
+      link: "#"
+  listlink: "/projects/"
+
+team:
+  people:
+    - name: Dr. Ramgopal Mettu
+      role: Principal Investigator
+      link: "https://ramgopalmettu.org/"
+      avatar: "/assets/images/avatars/rmettu.webp"
+    - name: Dr. Samuel Landry
+      role: Principal Investigator
+      link: "https://medicine.tulane.edu/departments/biochemistry-molecular-biology-tulane-cancer-center-debakey/faculty/samuel-j-landry-phd"
+      avatar: "/assets/images/avatars/slandry.jpg"
+    - name: Jiarui Li
+      role: Ph.D. Student
+      link: "https://jiarui.li/"
+      avatar: "/assets/images/avatars/jli.jpg"
+    - name: Dr. Avik Bhattacharya
+      role: "Alumni<br>(Postdoc @ UCSF)"
+      link: "https://hollenbachlab.ucsf.edu/content/avik-bhattacharya-phd"
+      avatar: "/assets/images/avatars/abhattacharya.jpg"
+  join:
+    hidden: false
+    title: Contact Us
+    info: Please feel free to contact us to discuss our research or explore potential collaboration opportunities.
+    mail: rmettu@tulane.edu
+    link: "mailto:rmettu@tulane.edu"
+
+footer:
+  note: <strong>Mettu Landry Lab</strong> &copy; 2026.

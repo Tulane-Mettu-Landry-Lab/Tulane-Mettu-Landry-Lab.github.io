@@ -1,0 +1,41 @@
+# 1. Core project details
+project:
+  title: "Antigen Processing Likelihood (APL)"
+  category: "ImmunoInformatics"
+  abbr: "APL"
+  desc: "Illuminating Epitope Presentation with Conformation Computation."
+  figure: "images/apllogo.png"
+
+lab:
+  name: "Mettu Landry Lab"
+  icon: "images/jellyroll.png"
+
+document:
+  path: "./README.md"
+  centered: false
+  footer: "2026 &copy; Mettu Landry Lab<br>CC BY 4.0"
+
+nav:
+  Home: "/"
+  Projects: "/projects/"
+  APL: null
+
+papers:
+  - year: 2026
+    month: "March"
+    title: "APLSuite: An Integrated Suite for CD4+ T Cell Epitope Prediction via Antigen Processing Likelihood"
+    publication: "Tech. Rep."
+    authors: "J.Li, et al."
+    link: "/blogs/APLSuite/"
+  - year: 2024
+    month: "December"
+    title: "GPU Acceleration of Conformational Stability Computation for CD4+ T-cell Epitope Prediction"
+    publication: "BIBM"
+    authors: "J.Li, et al."
+    link: "/papers/BIBM2024GPUCOREX/"
+  - year: 2024
+    month: "October"
+    title: "GPU Acceleration for Markov Chain Monte Carlo Sampling"
+    publication: "AIMLSys"
+    authors: "J.Li, et al."
+    link: "/papers/AIMLSYS2024GPUMCMC/"

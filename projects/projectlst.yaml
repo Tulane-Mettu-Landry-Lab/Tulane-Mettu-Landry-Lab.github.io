@@ -1,0 +1,30 @@
+# 1. Core project details
+page:
+  title: "How We Transform Scientific Discovery with XAI"
+  subtitle: "Projects"
+  desc: "Check our recent research projects about XAI and XAI4S here."
+
+projects:
+  - title: "Antigen Processing Likelihood (APL)"
+    category: "ImmunoInformatics"
+    abbr: "APL"
+    desc: "Illuminating Epitope Presentation with Conformation Computation."
+    figure: "APL/images/apllogo.png"
+    link: "APL/"
+  - title: "Explainable Adaptive Immune System Modeling"
+    category: "ImmunoInformatics"
+    abbr: "AI4Immuno"
+    desc: "Using Explainable Machine Learning to Unreavel Adaptive Immune System Mechanism."
+    figure: "AI4Immuno/images/tcrpmhcstruct.png"
+    link: "AI4Immuno/"
+
+lab:
+  name: "Mettu Landry Lab"
+  icon: "/assets/images/jellyroll.png"
+
+document:
+  footer: "2026 &copy; Mettu Landry Lab<br>CC BY 4.0"
+
+nav:
+  Home: "/"
+  Projects: null

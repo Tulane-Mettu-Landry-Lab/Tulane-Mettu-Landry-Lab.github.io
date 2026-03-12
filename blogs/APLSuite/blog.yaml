@@ -1,0 +1,61 @@
+# 1. Core paper details
+paper:
+  title: "APLSuite: An Integrated Suite for CD4+ T Cell Epitope Prediction via Antigen Processing Likelihood"
+  publication: "Mettu Landry Lab Technical Report"
+  date:
+    month: March
+    year: 2026
+  abbr: "APLSuite"
+  pubicon: "/assets/images/icon_long.png"
+
+# 2. Author list
+authors:
+  - name: "Jiarui Li"
+    affiliation: "Department of Computer Science, Tulane University"
+    link: "https://www.jiarui-li.com/"
+  - name: "Marco K. Carbullido"
+    affiliation: "Department of Computer Science, Tulane University"
+  - name: "Jai Bansal"
+    affiliation: "Isidore Newman School, New Orleans, LA, United States"
+  - name: "Samuel J. Landry"
+    affiliation: "Department of Biochemistry and Molecular Biology, Tulane University School of Medicine"
+    link: "https://medicine.tulane.edu/departments/biochemistry-molecular-biology-tulane-cancer-center-debakey/faculty/samuel-j-landry-phd"
+  - name: "Ramgopal R. Mettu"
+    affiliation: "Department of Computer Science, Tulane University"
+    link: "https://ramgopalmettu.org/"
+    corresponding: true
+
+# 3. External links and resources
+links:
+  - name: "PDF"
+    link: "li2026aplsuite.pdf"
+    icon: "fa-solid fa-file-pdf"
+    expand: true
+  - name: "GitHub"
+    link: "https://github.com/Jiarui0923/APL"
+    icon: "fa-brands fa-github"
+  
+
+# 4. Citation formats (using the pipe '|' for multi-line strings)
+citations:
+  Bibtex: |
+    @misc{li2026aplsuite,
+      title={APLSuite: An Integrated Suite for CD4+ T Cell Epitope Prediction via Antigen Processing Likelihood},
+      url={https://github.com/Jiarui0923/APL},
+      journal={Mettu Landry Lab},
+      publisher={Mettu Landry Lab},
+      author={Li, Jiarui and Carbullido, Marco K. and Bansal, Jai and Landry, Samuel J. and Mettu, Ramgopal R.},
+      year={2026}
+    } 
+
+# 5. Path to the main document file
+document:
+  path: "./README.md"
+  centered: false
+  footer: "CC BY 4.0"
+
+nav:
+  Home: "/"
+  Projects: "/projects/"
+  APL: "/projects/APL/"
+  APLSuite: null

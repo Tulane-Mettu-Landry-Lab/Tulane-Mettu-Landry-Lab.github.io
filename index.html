@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+<title>Mettu Landry Lab</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<style>
+:root { --lab-blue:#2563eb; --lab-dark:#0f172a; --lab-light-blue:#eff6ff; }
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;}
+.is-pill{border-radius:50px!important;}
+.section{padding:4rem 1.5rem;}
+.card{border-radius:20px;border:1px solid #f0f0f0;box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);height:100%;transition: transform 0.2s;}
+.card:hover{transform:translateY(-5px);}
+.hero.is-medical{background-size:cover;background-position:center;background-repeat:no-repeat;}
+.hero.is-medical .hero-body{display:flex!important;align-items:flex-start!important;justify-content:flex-start!important;padding-top:4rem;padding-left:1rem;width:100%;}
+.navbar-item.is-active{color:var(--lab-blue)!important;font-weight:700;}
+.footer{background-color:#f8fafc;border-top:1px solid #e2e8f0;}
+.news-date{font-weight:600;color:var(--lab-blue);font-size:0.85rem;}
+.avatar-img{width:96px;height:96px;object-fit:cover;border-radius:50%;border:3px solid var(--lab-light-blue);}
+.navbar.is-transparent.container{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);width:calc(100% - 60px);z-index:9999;border-radius:40px;background:rgba(255,255,255,0.25);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 8px 20px rgba(0,0,0,0.2);transition:all 0.3s ease;padding-top:0.1rem;padding-bottom:0.1rem;}
+.navbar.is-transparent.container .navbar-item{margin:0.1rem 0.8rem;}
+.navbar-burger span{background-color:#ffffff;}
+html {
+  scroll-behavior: smooth;
+}
+.navbar-brand .navbar-item:not(:first-child) {
+    margin-left: 0.1rem;   /* small space only for icons after the first */
+    margin-right: 0.1rem;  /* optional: keep small spacing to the right */
+    padding: 0;            /* remove extra padding */
+}
+.navbar-brand .navbar-item:first-child {
+    margin-right: 0.1rem;  /* optional: keep small spacing to the right */
+    padding-right: 0;            /* remove extra padding */
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar is-transparent container" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="#home"><img src="" id="brand-icon" /></a>
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div id="navMenu" class="navbar-menu"><div class="navbar-end"></div></div>
+</nav>
+
+<!-- Hero -->
+<section id="home" class="hero is-fullheight is-medical">
+  <div class="hero-body container"><div class="content" id="hero-content"></div></div>
+</section>
+
+<hr class="container">
+
+<!-- About & News -->
+<section id="about" class="section container">
+  <div class="columns mb-6">
+    <div class="column is-8">
+      <h2 class="title is-2" id="about-title"></h2>
+      <div class="content is-medium has-text-grey" id="about-desc"></div>
+    </div>
+  </div>
+  <h3 class="title is-4 mb-5" id="news-title"></h3>
+  <div class="columns" id="news-items"></div>
+</section>
+
+<!-- Projects -->
+<section id="projects" class="section has-background-white-bis">
+  <div class="container">
+    <h2 class="title is-2 mb-6" id="projects-title"></h2>
+    <div class="columns is-multiline" id="projects-items"></div>
+    <div class="has-text-centered mt-6">
+      <a href="#" class="button is-link is-outlined is-rounded" id="projects-listlink">View Full Project List</a>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<section id="team" class="section container">
+  <h2 class="title is-2 mb-6">Our Team</h2>
+  <div class="columns is-multiline" id="team-people"></div>
+  <div id="contact" class="box p-6 mt-6" style="border-radius: 25px; border-width: 15px;">
+    <div class="columns is-vcentered">
+      <div class="column">
+        <h3 class="title is-5 mb-2" id="join-title"></h3>
+        <p class="is-size-6" id="join-info"></p>
+      </div>
+      <div class="column is-narrow has-text-right">
+        <p class="mb-1"><strong>Email:</strong> <span id="join-mail"></span></p>
+        <a class="button is-info is-pill" id="join-link" href="#">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="content has-text-centered" id="footer-note"></div>
+</footer>
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+<script>
+async function loadYAML(path){
+  const res = await fetch(path);
+  if(!res.ok) throw new Error('Failed to load YAML');
+  const text = await res.text();
+  return jsyaml.load(text);
+}
+
+function renderNavbar(data){
+    const navbarEnd = document.querySelector('.navbar-end');
+
+    // Clear previous brand icons
+    const brandContainer = document.querySelector('.navbar-brand');
+    // Remove all existing brand icons except burger
+    brandContainer.querySelectorAll('.navbar-item').forEach(el=>el.remove());
+
+    // Render all icons
+    if(data.main?.icons){
+        data.main.icons.forEach(icon=>{
+            const a = document.createElement('a');
+            a.className = 'navbar-item';
+            a.href = icon.link || '#';
+            const img = document.createElement('img');
+            img.src = icon.img;
+            a.appendChild(img);
+            // Insert before burger
+            const burger = brandContainer.querySelector('.navbar-burger');
+            brandContainer.insertBefore(a, burger);
+        });
+    }
+
+    // Render regular navbar links
+    navbarEnd.innerHTML = '';
+    ['About','Projects','Team'].forEach(link=>{
+        const a = document.createElement('a');
+        a.className = 'navbar-item';
+        a.href = `#${link.toLowerCase()}`;
+        a.textContent = link;
+        navbarEnd.appendChild(a);
+    });
+}
+
+function renderHero(data){
+  const hero=document.getElementById('hero-content');
+  hero.innerHTML=`
+  <img class="mb-0" src="${data.main.icons[0].img}" width="146px"></img>
+  <h1 class="title is-1 has-text-weight-bold mt-0" style="width:100%">${data.main.title}</h1>
+  <p class="subtitle is-5 has-text-grey-darker">${data.main.desc}</p>`;
+  const heroSection=document.querySelector('.hero.is-medical');
+  if(heroSection && data.main.bgimg) heroSection.style.backgroundImage=`url('${data.main.bgimg}')`;
+}
+
+function renderAbout(data){
+  document.getElementById('about-title').textContent=data.about.title;
+  document.getElementById('about-desc').innerHTML=data.about.desc;
+  const newsContainer=document.getElementById('news-items');
+  document.getElementById('news-title').textContent=data.news.title;
+  newsContainer.innerHTML='';
+  data.news.items.forEach(item=>{
+    const col=document.createElement('div'); col.className='column is-4';
+    col.innerHTML=`<div class="card"><div class="card-content">
+      <p class="news-date">${item.date}</p>
+      <p class="title is-5 mt-2">${item.title}</p>
+      <p class="has-text-grey">${item.desc}</p>
+      ${item.link?`<a href="${item.link}" class="has-text-link">More Details ➔</a>`:''}
+    </div></div>`;
+    newsContainer.appendChild(col);
+  });
+}
+
+function renderProjects(data){
+  document.getElementById('projects-title').textContent=data.project.title;
+  const container=document.getElementById('projects-items'); container.innerHTML='';
+  data.project.items.forEach(item=>{
+    const col=document.createElement('div'); col.className='column is-4';
+    col.innerHTML=`<div class="card"><div class="card-content">
+      <h4 class="title is-5">${item.title}</h4>
+      <h5 class="subtitle is-6 has-text-info">${item.tag}</h5>
+      <p class="mb-4">${item.desc}</p>
+      <a href="${item.link}" class="has-text-info has-text-weight-bold">Project Details ➔</a>
+    </div></div>`; container.appendChild(col);
+  });
+  if(data.project.listlink) document.getElementById('projects-listlink').href=data.project.listlink;
+}
+
+function renderTeam(data){
+  const peopleContainer=document.getElementById('team-people'); peopleContainer.innerHTML='';
+  data.team.people.forEach(p=>{
+    const col=document.createElement('div'); col.className='column is-3 has-text-centered';
+    col.innerHTML=`<img src="${p.avatar}" class="avatar-img mb-3" alt="${p.name}">
+      <h4 class="title is-5">${p.name}</h4>
+      <p class="subtitle is-6 has-text-info mb-0">${p.role}</p>
+      <a class="button is-text has-text-link is-small" href="${p.link||'#'}">Home Page</a>`;
+    peopleContainer.appendChild(col);
+  });
+  if(data.team.join && !data.team.join.hidden){
+    document.getElementById('join-title').textContent=data.team.join.title;
+    document.getElementById('join-info').textContent=data.team.join.info;
+    document.getElementById('join-mail').textContent=data.team.join.mail;
+    document.getElementById('join-link').href=data.team.join.link;
+  } else {
+    document.getElementById('contact').style = "display: none";
+  }
+}
+
+function renderFooter(data){
+  if(data.footer?.note) document.getElementById('footer-note').innerHTML='<p>'+data.footer.note+'</p>';
+}
+
+document.addEventListener('DOMContentLoaded', async ()=>{
+  try{
+    const data=await loadYAML('index.yaml');
+    renderNavbar(data); renderHero(data); renderAbout(data); renderProjects(data); renderTeam(data); renderFooter(data);
+    const burgers=Array.from(document.querySelectorAll('.navbar-burger'));
+    burgers.forEach(el=>el.addEventListener('click',()=>{
+      const target=document.getElementById(el.dataset.target);
+      el.classList.toggle('is-active'); target.classList.toggle('is-active');
+    }));
+  }catch(e){ console.error('Error loading page data:',e); }
+});
+
+</script>
+</body>
+</html>
