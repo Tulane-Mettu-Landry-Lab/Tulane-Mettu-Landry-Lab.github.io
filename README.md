@@ -13,3 +13,6 @@ serve pages/
 ```
 
 ## Deploy
+```bash
+git subtree push --prefix pages origin webpage
+```

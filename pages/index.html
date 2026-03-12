@@ -14,6 +14,11 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;}
 .card{border-radius:20px;border:1px solid #f0f0f0;box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);height:100%;transition: transform 0.2s;}
 .card:hover{transform:translateY(-5px);}
 .hero.is-medical{background-size:cover;background-position:center;background-repeat:no-repeat;}
+@media (max-width: 768px){
+    .hero.is-medical{
+        background-position: -300pt 64pt !important;
+    }
+}
 .hero.is-medical .hero-body{display:flex!important;align-items:flex-start!important;justify-content:flex-start!important;padding-top:4rem;padding-left:1rem;width:100%;}
 .navbar-item.is-active{color:var(--lab-blue)!important;font-weight:700;}
 .footer{background-color:#f8fafc;border-top:1px solid #e2e8f0;}
