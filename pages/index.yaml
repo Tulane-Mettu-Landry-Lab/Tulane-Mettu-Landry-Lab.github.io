@@ -1,12 +1,12 @@
 main:
-  title: "Discover Science<br>with Explainable AI"
+  title: "Discover Science with Explainable AI"
   name: "Mettu Landry Lab"
   icons:
     - img: "/assets/images/icon_long.png"
       link: "/"
     - img: "/assets/images/tulane.png"
       link: "https://tulane.edu/"
-  desc: "Discover Underly Scientific Mechanisms with<br>Explainable Machine Learning."
+  desc: "Discover Underly Scientific Mechanisms with Explainable Machine Learning."
   bgimg: "/assets/images/background.png"
 
 about:
