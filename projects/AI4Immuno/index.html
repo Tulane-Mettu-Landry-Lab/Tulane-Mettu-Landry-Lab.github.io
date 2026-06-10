@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+<title>Explainable Adaptive Immune System Modeling</title>
+
+<!-- Bulma -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<!-- Academicons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+<!-- Google Fonts -->
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap">
+
+
+<!-- Theme CSS -->
+<link rel="stylesheet" href="/css/style.css">
+
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- Marked (markdown rendering) -->
+<script src="https://cdn.jsdelivr.net/npm/marked"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked-base-url"></script>
+
+<!-- QR Code -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<!-- Additional head content per page -->
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body>
+<div class="navbar-container">
+<nav class="navbar custom-frosted-navbar" role="navigation" aria-label="main navigation">
+<div class="navbar-brand">
+<div class="navbar-item">
+<h1 class="is-size-5 has-text-weight-bold">XAI4Immuno</h1>
+</div>
+</div>
+<div id="navbarMenu" class="navbar-menu">
+<div class="navbar-end is-flex-mobile">
+<div class="navbar-item is-flex-mobile">
+<div class="buttons has-addons is-centered" id="section-indicator-container"></div>
+</div>
+</div>
+</div>
+</nav>
+</div>
+
+<div class="hero is-small">
+<nav class="hero-body">
+<article class="media">
+
+<span id="top-nav-icon">
+
+<figure class="media-left">
+<div class="logo-container" style="height:21pt;">
+<img src="/projects/AI4Immuno/images/jellyroll.png" style="max-width: auto;height: 100%;display: block;">
+</div>
+</figure>
+
+</span>
+<div class="media-content is-hidden-mobile">
+<h1 class="subtitle">Mettu Landry Lab</h1>
+</div>
+<div class="media-content is-hidden-tablet">
+<h1 class="subtitle">Mettu Landry Lab</h1>
+</div>
+</article>
+</nav>
+</div>
+
+<section class="hero is-bold is-halfheight mt-0">
+<div class="hero-body hero-body-relative">
+<div class="container hero-inner">
+<div class="content">
+<span id="paper-title-container">
+<h4 class="subtitle" style="font-weight: 400; color: #555;">ImmunoInformatics</h4>
+<h1 class="title mt-0">Explainable Adaptive Immune System Modeling</h1>
+</span>
+<p id="short-desc-container" class="is-dmserif mb-0">Using Explainable Machine Learning to Unreavel Adaptive Immune System Mechanism.</p>
+</div>
+<nav class="breadcrumb is-small" aria-label="breadcrumbs">
+<ul id="breadcrumb-container">
+
+<li><a href="/">Home</a></li>
+
+<li><a href="/projects/">Projects</a></li>
+
+<li class="is-active"><a aria-current="page">XAI4Immuno</a></li>
+
+</ul>
+</nav>
+</div>
+<span id="paper-title-image-container">
+
+<div class="hero-image-right is-hidden-mobile fade-vertical">
+<img src="/projects/AI4Immuno/images/tcrpmhcstruct.png" alt="Hero image">
+</div>
+
+</span>
+</div>
+</section>
+
+<!-- Post-process content to fix relative image paths -->
+<!-- Hexo resolves markdown relative paths as root-relative, but we need page-relative -->
+
+
+
+
+
+<section class="section">
+<div class="container is-max-desktop">
+<div class="content" id="markdown-output-container">
+  <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>T cell receptor (TCR) recognition of peptide-MHC (pMHC) complexes is central to immunity and T cell-based therapies. We introduce an explanation-driven framework that uses a new post-hoc analysis method to guide the design of a novel encoder-decoder transformer for TCR-pMHC prediction. By revealing the most informative TCR-epitope features, our method optimizes cross-attention design, auxiliary objectives, and an explanation-based early-stopping strategy. The resulting model achieves state-of-the-art accuracy with improved robustness and interpretability, offering new insight into sequence-level binding mechanisms.</p>
+<h2 id="Acknowledgement"><a href="#Acknowledgement" class="headerlink" title="Acknowledgement"></a>Acknowledgement</h2><p>We appreciate cooperators, researchers, and labs below:</p>
+<ul>
+<li>Dr. Zhengming Ding, Zixiang Yin</li>
+<li>Dr. Loren Gragert Group</li>
+<li>Dr. Jihun Hamm, Janet Wang, Yunbei Zhang</li>
+</ul>
+<p>This project is supported by:</p>
+<ul>
+<li>Harold L. and Heather E. Jurist Center of Excellence for Artificial Intelligence at Tulane University</li>
+<li>National Institutes of Health (U54-CA260581) through the Tulane University COVID Antibody and Immunity Network (TUCAIN)</li>
+<li>Tulane SOM Pilot Funding for “MHCII Pathway Processing of SARS-CoV-2 Spike”</li>
+<li>Tulane Center of Excellence for Emerging and Re-emerging Infectious Diseases (CEERID) Pilot Research Program for “Large-Scale Validation of a Novel Parallel Algorithm for Computational Epitope Prediction”</li>
+<li>Lavin-Bernick Faculty Grant Proposal Research and Scholarly Activities Support for “Research Trainee Support for Modeling Antigen Processing and HLA Immunopeptidomics”</li>
+</ul>
+
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container is-max-desktop">
+<div class="content">
+<h2 class="title is-4">Publications & Presentations</h2>
+</div>
+<div class="columns is-multiline" id="papers-container">
+
+<div class="column is-one-third-desktop is-full-mobile">
+<a href="/papers/ICLR2026QCAI/" class="paper-card-link">
+<div class="card paper-card is-dmserif">
+<div class="card-content">
+<p class="has-text-weight-bold colored-underline">2026 April</p>
+<p class="title is-5 mt-2">Quantifying Cross-Attention Interaction in Transformers for Interpreting TCR-pMHC Binding</p>
+<p class="subtitle is-6 mt-1">ICLR</p>
+<p class="">J.Li, et al.</p>
+</div>
+</div>
+</a>
+</div>
+
+<div class="column is-one-third-desktop is-full-mobile">
+<a href="/papers/LMRL2026TCREML/" class="paper-card-link">
+<div class="card paper-card is-dmserif">
+<div class="card-content">
+<p class="has-text-weight-bold colored-underline">2026 April</p>
+<p class="title is-5 mt-2">TCR-EML: Explainable Model Layers for TCR-pMHC Prediction</p>
+<p class="subtitle is-6 mt-1">LMRL@ICLR</p>
+<p class="">J.Li, et al.</p>
+</div>
+</div>
+</a>
+</div>
+
+<div class="column is-one-third-desktop is-full-mobile">
+<a href="/papers/BCB2025EGM/" class="paper-card-link">
+<div class="card paper-card is-dmserif">
+<div class="card-content">
+<p class="has-text-weight-bold colored-underline">2025 December</p>
+<p class="title is-5 mt-2">Rational Multi-Modal Transformers for TCR-pMHC Prediction</p>
+<p class="subtitle is-6 mt-1">ACM-BCB</p>
+<p class="">J.Li, et al.</p>
+</div>
+</div>
+</a>
+</div>
+
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="content has-text-centered">
+<p>2026 &amp;copy; Mettu Landry Lab&lt;br&gt;CC BY 4.0</p>
+<p>Build <a target="_blank" rel="noopener" href="https://github.com/Jiarui0923/paperpage">ProjectPage</a> for your project.</p>
+<a id="theme-toggle" class="button">
+<span class="icon"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</a>
+</div>
+</footer>
+
+<script>
+(function() {
+  var sectionData = [];
+  var isSectionDataReady = false;
+  var scrollTimeout;
+
+  function slugify(text) {
+    return text.toLowerCase().trim().replace(/[\s\W-]+/g, '-').replace(/^-+|-+$/g, '');
+  }
+
+  function extractSections() {
+    sectionData = [];
+    var mainContent = document.getElementById('markdown-output-container');
+    var scrollOffset = 150;
+    var usedIds = {};
+    if (mainContent) {
+      mainContent.querySelectorAll('h1, h2, h3').forEach(function(heading) {
+        var text = heading.textContent.trim();
+        if (!text) return;
+        var id = heading.id;
+        if (!id || usedIds[id]) {
+          id = slugify(text);
+          var uniqueId = id, counter = 1;
+          while (usedIds[uniqueId]) { uniqueId = id + '-' + (counter++); }
+          id = uniqueId;
+          heading.id = id;
+        }
+        usedIds[id] = true;
+        var rect = heading.getBoundingClientRect();
+        sectionData.push({ id: id, title: text, offsetTop: rect.top + window.scrollY - scrollOffset });
+      });
+    }
+    sectionData.sort(function(a, b) { return a.offsetTop - b.offsetTop; });
+    isSectionDataReady = sectionData.length > 0;
+    updateSectionIndicator();
+  }
+
+  function updateSectionIndicator() {
+    var container = document.getElementById('section-indicator-container');
+    if (!isSectionDataReady || !container) return;
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(function() {
+      var currentScroll = window.scrollY;
+      var activeIndex = 0;
+      for (var i = sectionData.length - 1; i >= 0; i--) {
+        if (currentScroll >= sectionData[i].offsetTop) { activeIndex = i; break; }
+      }
+      var curr = sectionData[activeIndex];
+      var prev = sectionData[activeIndex - 1];
+      var next = sectionData[activeIndex + 1];
+      var html = '';
+      if (prev) html += '<a class="button is-ghost section-nav-link is-prev" href="#' + prev.id + '"><i class="fa-solid fa-arrow-left"></i></a>';
+      html += '<a class="button is-ghost section-nav-link is-active" href="#' + curr.id + '">' + curr.title.toUpperCase() + '</a>';
+      if (next) html += '<a class="button is-ghost section-nav-link is-next" href="#' + next.id + '"><i class="fa-solid fa-arrow-right"></i></a>';
+      if (container.dataset.activeId !== curr.id) {
+        container.innerHTML = html;
+        container.dataset.activeId = curr.id;
+      }
+    }, 50);
+  }
+
+  extractSections();
+  window.addEventListener('scroll', updateSectionIndicator);
+  window.addEventListener('resize', extractSections);
+})();
+</script>
+
+<!-- Theme JS -->
+<script>
+// Theme management
+var theme = localStorage.getItem('theme') || 'auto';
+
+function updateThemeButton() {
+    var toggle = document.getElementById('theme-toggle');
+    if (!toggle) return;
+    var icon = toggle.querySelector('.icon i');
+    icon.classList.remove('fa-sun', 'fa-moon', 'fa-circle-half-stroke');
+    if (theme === 'light') icon.classList.add('fa-sun');
+    else if (theme === 'dark') icon.classList.add('fa-moon');
+    else icon.classList.add('fa-circle-half-stroke');
+}
+
+function applyTheme() {
+    if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    else if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    else document.documentElement.removeAttribute('data-theme');
+    updateThemeButton();
+    localStorage.setItem('theme', theme);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    applyTheme();
+    var toggle = document.getElementById('theme-toggle');
+    if (toggle) {
+        toggle.addEventListener('click', function() {
+            if (theme === 'auto') theme = 'light';
+            else if (theme === 'light') theme = 'dark';
+            else theme = 'auto';
+            applyTheme();
+        });
+    }
+});
+
+// Smooth scroll for anchor links
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+            var targetId = this.getAttribute('href').substring(1);
+            var targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>

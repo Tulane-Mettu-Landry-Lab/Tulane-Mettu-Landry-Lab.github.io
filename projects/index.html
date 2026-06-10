@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+<title>Projects</title>
+
+<!-- Bulma -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<!-- Academicons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+<!-- Google Fonts -->
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap">
+
+
+<!-- Theme CSS -->
+<link rel="stylesheet" href="/css/style.css">
+
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- Marked (markdown rendering) -->
+<script src="https://cdn.jsdelivr.net/npm/marked"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked-base-url"></script>
+
+<!-- QR Code -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<!-- Additional head content per page -->
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body>
+<div class="navbar-container is-hidden">
+<nav class="navbar custom-frosted-navbar" role="navigation" aria-label="main navigation">
+<div class="navbar-brand">
+<div class="navbar-item">
+<h1 class="is-size-5 has-text-weight-bold">Projects</h1>
+</div>
+</div>
+</nav>
+</div>
+
+<div class="hero is-small">
+<nav class="hero-body">
+<article class="media">
+
+<span id="top-nav-icon">
+
+<figure class="media-left">
+<div class="logo-container" style="height:21pt;">
+<img src="/assets/images/jellyroll.png" style="max-width: auto;height: 100%;display: block;">
+</div>
+</figure>
+
+</span>
+<div class="media-content is-hidden-mobile">
+<h1 class="subtitle">Mettu Landry Lab</h1>
+</div>
+<div class="media-content is-hidden-tablet">
+<h1 class="subtitle">Mettu Landry Lab</h1>
+</div>
+</article>
+</nav>
+</div>
+
+<section class="hero is-bold is-halfheight mt-0">
+<div class="hero-body hero-body-relative">
+<div class="container hero-inner">
+<div class="content">
+<h4 class="subtitle" style="font-weight: 400; color: #555;">Projects</h4>
+<h1 class="title mt-0">How We Transform Scientific Discovery with XAI</h1>
+<p class="is-dmserif mb-0">Check our recent research projects about XAI and XAI4S here.</p>
+</div>
+<nav class="breadcrumb is-small" aria-label="breadcrumbs">
+<ul id="breadcrumb-container">
+
+<li><a href="/">Home</a></li>
+
+<li class="is-active"><a aria-current="page">Projects</a></li>
+
+</ul>
+</nav>
+</div>
+</div>
+</section>
+
+<span id="project-info-container">
+
+<section class="hero is-bold is-halfheight mt-0">
+<div class="hero-body hero-body-relative">
+
+<div class="hero-image-left is-hidden-mobile fade-vertical">
+<img src="/projects/APL/images/apllogo.png" alt="Hero image">
+</div>
+
+<div class="container hero-inner">
+<div class="content">
+<h4 class="subtitle" style="font-weight: 400; color: #555;">ImmunoInformatics</h4>
+<h1 class="title mt-0 mb-2">Antigen Processing Likelihood (APL)</h1>
+<p class="is-dmserif mt-0">Illuminating Epitope Presentation with Conformation Computation.</p>
+<a class="button is-ghost" href="APL/">
+<span>Check more details about APL</span>
+<span class="icon is-small"><i class="fas fa-solid fa-right-long"></i></span>
+</a>
+</div>
+</div>
+</div>
+</section>
+
+<section class="hero is-bold is-halfheight mt-0">
+<div class="hero-body hero-body-relative">
+
+<div class="hero-image-left is-hidden-mobile fade-vertical">
+<img src="/projects/AI4Immuno/images/tcrpmhcstruct.png" alt="Hero image">
+</div>
+
+<div class="container hero-inner">
+<div class="content">
+<h4 class="subtitle" style="font-weight: 400; color: #555;">ImmunoInformatics</h4>
+<h1 class="title mt-0 mb-2">Explainable Adaptive Immune System Modeling</h1>
+<p class="is-dmserif mt-0">Using Explainable Machine Learning to Unreavel Adaptive Immune System Mechanism.</p>
+<a class="button is-ghost" href="AI4Immuno/">
+<span>Check more details about AI4Immuno</span>
+<span class="icon is-small"><i class="fas fa-solid fa-right-long"></i></span>
+</a>
+</div>
+</div>
+</div>
+</section>
+
+</span>
+
+<footer class="footer">
+<div class="content has-text-centered">
+<p>2026 &amp;copy; Mettu Landry Lab&lt;br&gt;CC BY 4.0</p>
+<p>Build <a target="_blank" rel="noopener" href="https://github.com/Jiarui0923/paperpage">ProjectPage</a> for your project.</p>
+<a id="theme-toggle" class="button">
+<span class="icon"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</a>
+</div>
+</footer>
+
+<!-- Theme JS -->
+<script>
+// Theme management
+var theme = localStorage.getItem('theme') || 'auto';
+
+function updateThemeButton() {
+    var toggle = document.getElementById('theme-toggle');
+    if (!toggle) return;
+    var icon = toggle.querySelector('.icon i');
+    icon.classList.remove('fa-sun', 'fa-moon', 'fa-circle-half-stroke');
+    if (theme === 'light') icon.classList.add('fa-sun');
+    else if (theme === 'dark') icon.classList.add('fa-moon');
+    else icon.classList.add('fa-circle-half-stroke');
+}
+
+function applyTheme() {
+    if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    else if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    else document.documentElement.removeAttribute('data-theme');
+    updateThemeButton();
+    localStorage.setItem('theme', theme);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    applyTheme();
+    var toggle = document.getElementById('theme-toggle');
+    if (toggle) {
+        toggle.addEventListener('click', function() {
+            if (theme === 'auto') theme = 'light';
+            else if (theme === 'light') theme = 'dark';
+            else theme = 'auto';
+            applyTheme();
+        });
+    }
+});
+
+// Smooth scroll for anchor links
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+            var targetId = this.getAttribute('href').substring(1);
+            var targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>

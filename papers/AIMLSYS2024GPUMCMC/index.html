@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+<title>GPU Acceleration for Markov Chain Monte Carlo Sampling</title>
+
+<!-- Bulma -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<!-- Academicons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+<!-- Google Fonts -->
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap">
+
+
+<!-- Theme CSS -->
+<link rel="stylesheet" href="/css/style.css">
+
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- Marked (markdown rendering) -->
+<script src="https://cdn.jsdelivr.net/npm/marked"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked-base-url"></script>
+
+<!-- QR Code -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<!-- Additional head content per page -->
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body>
+<div class="navbar-container">
+<nav class="navbar custom-frosted-navbar">
+<div class="navbar-brand">
+<div class="navbar-item">
+<h1 class="is-size-5 has-text-weight-bold">AIMLSys 2024</h1>
+</div>
+<a role="button" class="navbar-burger" href="#cite">
+<i class="fa-solid fa-quote-right"></i>
+</a>
+</div>
+<div id="navbarMenu" class="navbar-menu">
+<div class="navbar-center is-flex-mobile">
+<div class="navbar-item is-flex-mobile">
+<div class="buttons has-addons is-centered" id="section-indicator-container"></div>
+</div>
+</div>
+<div class="navbar-end" id="link-buttons-container">
+
+  
+    <a class="navbar-item hover-expand is-small is-dmserif" target="_blank" rel="noopener" href="https://dl.acm.org/doi/abs/10.1145/3703412.3703428">
+      <span class="icon" style="margin-right: -5pt;"><i class="ai ai-acm"></i></span>
+      <span class="text">&nbsp;&nbsp;Paper</span>
+    </a>
+  
+    <a class="navbar-item hover-expand is-small is-dmserif" href="li2025gpumcmc.pdf">
+      <span class="icon" style="margin-right: -5pt;"><i class="fa-solid fa-file-pdf"></i></span>
+      <span class="text">&nbsp;&nbsp;PDF</span>
+    </a>
+  
+
+<a class="navbar-item button is-ghost hover-expand is-link is-outlined is-dmserif" href="#cite">
+  <span class="icon" style="margin-right: -5pt;"><i class="fa-solid fa-quote-right"></i></span>
+  <span class="text">&nbsp;&nbsp;Cite</span>
+</a>
+</div>
+</div>
+</nav>
+</div>
+
+<div class="hero is-small">
+<nav class="hero-body">
+<article class="media">
+
+<span id="top-nav-icon">
+
+  <figure class="media-left">
+    <div class="logo-container" style="height:21pt;">
+      <img src="/papers/AIMLSYS2024GPUMCMC/images/AIML_logo.png" style="max-width: auto;height: 100%;display: block;">
+    </div>
+  </figure>
+
+</span>
+<div class="media-content is-hidden-mobile">
+<h1 class="subtitle">Proceedings of the 4th International Conference on AI-ML Systems</h1>
+</div>
+<div class="media-content is-hidden-tablet">
+<h1 class="subtitle">AIMLSys</h1>
+</div>
+</article>
+</nav>
+</div>
+
+<section class="hero is-bold is-halfheight mt-0">
+<div class="hero-body">
+<div class="container has-text-left" id="header-title">
+<div class="content">
+<span id="paper-title-container">
+  <h4 class="subtitle" style="font-weight: 400; color: #555;">
+    2024 October
+  </h4>
+  <h1 class="title mt-0">GPU Acceleration for Markov Chain Monte Carlo Sampling</h1>
+</span>
+
+<!-- Authors -->
+<p id="author-list-container" class="is-dmserif mb-0">
+
+  
+    
+    
+      <a target="_blank" rel="noopener" href="https://www.jiarui-li.com/"><strong>Jiarui Li</strong></a>
+    
+    <span class="sup" data-number="1"></span>
+  
+     &middot; 
+    
+      <a target="_blank" rel="noopener" href="https://medicine.tulane.edu/departments/biochemistry-molecular-biology-tulane-cancer-center-debakey/faculty/samuel-j-landry-phd"><strong>Samuel J. Landry</strong></a>
+    
+    <span class="sup" data-number="2"></span>
+  
+     &middot; 
+    
+      <a target="_blank" rel="noopener" href="https://ramgopalmettu.org/"><strong>Ramgopal R. Mettu</strong></a>
+    
+    <span class="sup" data-number="1"></span><span class="sup" data-symbol="star"></span>
+  
+
+</p>
+
+<!-- Affiliation explanations -->
+<p id="affiliation-explanation-container" class="is-dmserif">
+
+  <span class="sup" data-number="1"></span>Department of Computer Science, Tulane University<br>
+
+  <span class="sup" data-number="2"></span>Department of Biochemistry and Molecular Biology, Tulane University School of Medicine<br>
+<span class="sup" data-symbol="star"></span>Corresponding Author(s)<br>
+</p>
+
+<!-- Link buttons header -->
+<p id="link-buttons-header-container">
+  
+    <div class="buttons has-addons is-dmserif">
+      
+        <a class="button is-small is-rounded frosted-button " target="_blank" rel="noopener" href="https://dl.acm.org/doi/abs/10.1145/3703412.3703428">
+          <span class="icon" style="margin-right: -5pt;"><i class="ai ai-acm"></i></span>
+          <span class="text">&nbsp;&nbsp;Paper</span>
+        </a>
+      
+        <a class="button is-small is-rounded frosted-button hover-expand" href="li2025gpumcmc.pdf">
+          <span class="icon" style="margin-right: -5pt;"><i class="fa-solid fa-file-pdf"></i></span>
+          <span class="text">&nbsp;&nbsp;PDF</span>
+        </a>
+      
+      <a class="button is-small is-rounded frosted-button hover-expand is-link is-outlined" href="#cite">
+        <span class="icon" style="margin-right: -5pt;"><i class="fa-solid fa-quote-right"></i></span>
+        <span class="text">&nbsp;&nbsp;Cite</span>
+      </a>
+    </div>
+  
+</p>
+</div>
+
+<nav class="breadcrumb is-small">
+<ul id="breadcrumb-container">
+
+  <li><a href="/">Home</a></li>
+
+  <li><a href="/projects/">Projects</a></li>
+
+  <li><a href="/projects/APL/">APL</a></li>
+
+  <li class="is-active"><a aria-current="page">GPUMCMC</a></li>
+
+</ul>
+</nav>
+
+</div>
+</div>
+</section>
+
+<!-- Post-process content to fix relative image paths -->
+<!-- Hexo resolves markdown relative paths as root-relative, but we need page-relative -->
+
+
+
+
+
+
+
+<section class="section">
+<div class="container is-max-desktop">
+<div class="content" id="markdown-output-container">
+  <p>In areas such as molecular biology, computer vision, and natural language processing, graphs are commonly used to represent the structure of probability distributions (or their equivalents) that are too large to consider explicitly. In these settings, we are commonly interested in sampling from the distribution for various inference tasks. A typical approach is the use of Markov Chain Monte Carlo (MCMC) methods. The classic, uniprocessor, approach to MCMC still results in poor performance. While parallel approaches on CPU or GPU devices have been proposed, they are often designed for specific tasks and&#x2F;or do not effectively utilize the inter-device communication capabilities of GPUs. We propose a novel, GPU-parallelizable MCMC method for this setting. Our approach makes use of a partitioning approach to divide the graph and dispatch the resulting sub-graphs to GPUs. Using the communication capabilities of GPUs (e.g., NVLink), we give a way to coordinate information between the computations over adjacent subgraphs and subsequently merge them. This approach takes advantage of the high degree of GPU parallelism while maintaining the generality of MCMC sampling. We demonstrate the performance of our approach for estimating protein conformational stability. Over four different benchmarks and two GPU platforms we show that our method achieves up to a 400% speedup over an adaptive Monte Carlo sampling method.</p>
+<p><img src="/papers/AIMLSYS2024GPUMCMC/./images/intro.jpg" alt="pipeline-intro"><br><em>Schematic of our approach.</em></p>
+
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container is-max-desktop">
+<h2 class="title is-4" id="cite">Cite This Work</h2>
+<div class="grid has-3-cols">
+<div class="cell is-col-span-2">
+  <div class="tabs mb-0" id="citation-tabs">
+    <ul>
+      
+        <li class=&#34;is-active&#34;><a href="#" data-tab="Bibtex">Bibtex</a></li>
+      
+        <li><a href="#" data-tab="APA">APA</a></li>
+      
+    </ul>
+  </div>
+  <pre id="citation-content" class="is-mono">@inproceedings{li2024gpu,
+  title={GPU Acceleration for Markov Chain Monte Carlo Sampling},
+  author={Li, Jiarui and Landry, Samuel J. and Mettu, Ramgopal R.},
+  booktitle={Proceedings of the 4th International Conference on AI-ML Systems (AIMLSystems 2024)},
+  pages={14:1--14:8},
+  year={2024},
+  publisher={ACM},
+  doi={10.1145/3703412.3703428}
+}
+</pre>
+</div>
+<div class="cell has-text-centered is-flex is-justify-content-center is-align-items-center">
+  <div id="share-col"></div>
+</div>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="content has-text-centered">
+<p id="footer-note-container">CC BY 4.0</p>
+<p>Build <a target="_blank" rel="noopener" href="https://github.com/Jiarui0923/paperpage">PaperPage</a> for your paper.</p>
+<a id="theme-toggle" class="button">
+  <span class="icon"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</a>
+</div>
+</footer>
+
+<!-- Section Navigation & Citation JS -->
+<script>
+(function() {
+  var sectionData = [];
+  var isSectionDataReady = false;
+  var scrollTimeout;
+  var citations = {"Bibtex":"@inproceedings{li2024gpu,\n  title={GPU Acceleration for Markov Chain Monte Carlo Sampling},\n  author={Li, Jiarui and Landry, Samuel J. and Mettu, Ramgopal R.},\n  booktitle={Proceedings of the 4th International Conference on AI-ML Systems (AIMLSystems 2024)},\n  pages={14:1--14:8},\n  year={2024},\n  publisher={ACM},\n  doi={10.1145/3703412.3703428}\n}\n","APA":"Li, J., Landry, S. J., & Mettu, R. R. (2024). GPU Acceleration for Markov Chain Monte Carlo Sampling. In Proceedings of the 4th International Conference on AI-ML Systems (AIMLSystems 2024) (pp. 14:1–14:8). ACM. https://doi.org/10.1145/3703412.3703428\n"};
+
+  // Citation tabs
+  document.querySelectorAll('#citation-tabs a').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      var tabName = this.dataset.tab;
+      document.querySelectorAll('#citation-tabs li').forEach(function(li) { li.classList.remove('is-active'); });
+      this.parentElement.classList.add('is-active');
+      document.getElementById('citation-content').textContent = citations[tabName] || '';
+    });
+  });
+
+  // Slugify helper
+  function slugify(text) {
+    return text.toLowerCase().trim().replace(/[\s\W-]+/g, '-').replace(/^-+|-+$/g, '');
+  }
+
+  // Extract headings
+  function extractSections() {
+    sectionData = [];
+    var mainContent = document.getElementById('markdown-output-container');
+    var scrollOffset = 150;
+    var usedIds = {};
+    if (mainContent) {
+      mainContent.querySelectorAll('h1, h2, h3').forEach(function(heading) {
+        var text = heading.textContent.trim();
+        if (!text) return;
+        var id = heading.id;
+        if (!id || usedIds[id]) {
+          id = slugify(text);
+          var uniqueId = id, counter = 1;
+          while (usedIds[uniqueId]) { uniqueId = id + '-' + (counter++); }
+          id = uniqueId;
+          heading.id = id;
+        }
+        usedIds[id] = true;
+        var rect = heading.getBoundingClientRect();
+        sectionData.push({ id: id, title: text, offsetTop: rect.top + window.scrollY - scrollOffset });
+      });
+    }
+    sectionData.sort(function(a, b) { return a.offsetTop - b.offsetTop; });
+    isSectionDataReady = sectionData.length > 0;
+    updateSectionIndicator();
+  }
+
+  function updateSectionIndicator() {
+    var container = document.getElementById('section-indicator-container');
+    if (!isSectionDataReady || !container) return;
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(function() {
+      var currentScroll = window.scrollY;
+      var activeIndex = 0;
+      for (var i = sectionData.length - 1; i >= 0; i--) {
+        if (currentScroll >= sectionData[i].offsetTop) { activeIndex = i; break; }
+      }
+      var curr = sectionData[activeIndex];
+      var prev = sectionData[activeIndex - 1];
+      var next = sectionData[activeIndex + 1];
+      var html = '';
+      if (prev) html += '<a class="button is-ghost section-nav-link is-prev" href="#' + prev.id + '"><i class="fa-solid fa-arrow-left"></i></a>';
+      html += '<a class="button is-ghost section-nav-link is-active" href="#' + curr.id + '">' + curr.title.toUpperCase() + '</a>';
+      if (next) html += '<a class="button is-ghost section-nav-link is-next" href="#' + next.id + '"><i class="fa-solid fa-arrow-right"></i></a>';
+      if (container.dataset.activeId !== curr.id) {
+        container.innerHTML = html;
+        container.dataset.activeId = curr.id;
+      }
+    }, 50);
+  }
+
+  // QR Code
+  try {
+    new QRCode(document.getElementById('share-col'), {
+      text: window.location.href,
+      width: 200,
+      height: 200,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  } catch(e) {}
+
+  // Init
+  extractSections();
+  window.addEventListener('scroll', updateSectionIndicator);
+  window.addEventListener('resize', extractSections);
+})();
+</script>
+
+<!-- Theme JS -->
+<script>
+// Theme management
+var theme = localStorage.getItem('theme') || 'auto';
+
+function updateThemeButton() {
+    var toggle = document.getElementById('theme-toggle');
+    if (!toggle) return;
+    var icon = toggle.querySelector('.icon i');
+    icon.classList.remove('fa-sun', 'fa-moon', 'fa-circle-half-stroke');
+    if (theme === 'light') icon.classList.add('fa-sun');
+    else if (theme === 'dark') icon.classList.add('fa-moon');
+    else icon.classList.add('fa-circle-half-stroke');
+}
+
+function applyTheme() {
+    if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    else if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    else document.documentElement.removeAttribute('data-theme');
+    updateThemeButton();
+    localStorage.setItem('theme', theme);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    applyTheme();
+    var toggle = document.getElementById('theme-toggle');
+    if (toggle) {
+        toggle.addEventListener('click', function() {
+            if (theme === 'auto') theme = 'light';
+            else if (theme === 'light') theme = 'dark';
+            else theme = 'auto';
+            applyTheme();
+        });
+    }
+});
+
+// Smooth scroll for anchor links
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+            var targetId = this.getAttribute('href').substring(1);
+            var targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>

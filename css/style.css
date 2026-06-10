@@ -1,0 +1,297 @@
+/* ===== CSS Variables & Fonts ===== */
+:root {
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-dserif: 'DM Serif Text', serif;
+    --hero-bg-color: #f5f5f5;
+    --hero-text-color: #222;
+    --lab-blue: #2563eb;
+    --lab-dark: #0f172a;
+    --lab-light-blue: #eff6ff;
+}
+
+/* ===== Typography ===== */
+h1, h2, h3, h4 { font-family: var(--font-dserif); }
+body { font-family: var(--font-sans); }
+.is-dmserif { font-family: var(--font-dserif); }
+.is-mono { font-family: var(--font-mono); }
+
+/* ===== Hover-expand buttons ===== */
+.hover-expand .text {
+    opacity: 0;
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: opacity 0.3s ease, max-width 0.3s ease;
+    display: inline-block;
+    vertical-align: middle;
+}
+.hover-expand:hover .text {
+    opacity: 1;
+    max-width: 200px;
+}
+
+/* ===== Superscripts ===== */
+.sup { font-size: 0.7em; vertical-align: super; }
+.sup[data-symbol="plus"]::after { content: "⁺"; }
+.sup[data-symbol="minus"]::after { content: "⁻"; }
+.sup[data-symbol="star"]::after { content: "*"; }
+.sup[data-number="1"]::after { content: "¹"; }
+.sup[data-number="2"]::after { content: "²"; }
+.sup[data-number="3"]::after { content: "³"; }
+.sup[data-number="4"]::after { content: "⁴"; }
+.sup[data-number="5"]::after { content: "⁵"; }
+.sup[data-number="6"]::after { content: "⁶"; }
+.sup[data-number="7"]::after { content: "⁷"; }
+.sup[data-number="8"]::after { content: "⁸"; }
+.sup[data-number="9"]::after { content: "⁹"; }
+.sup[data-number="0"]::after { content: "⁰"; }
+
+/* ===== Floating Navbar (papers, projects, blogs) ===== */
+.navbar-container {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    z-index: 1000;
+    border-radius: 2rem;
+    border-color: lightgrey;
+    border-width: 0.5pt;
+    border-style: solid;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+    overflow: hidden;
+}
+.custom-frosted-navbar {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    border-radius: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: 100%;
+}
+.custom-frosted-navbar .navbar-item {
+    background-color: transparent !important;
+}
+
+/* ===== Frosted Glass Style for Buttons ===== */
+.frosted-button {
+    background-color: transparent !important;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+}
+.frosted-button:hover {
+    background-color: rgba(50, 152, 220, 0.1) !important;
+}
+
+/* ===== Section Indicator (scroll navigation) ===== */
+.navbar-center {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+    min-width: 0;
+}
+#section-indicator-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    overflow: hidden;
+}
+.section-nav-link {
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 15vw;
+}
+.section-nav-link.is-active {
+    transform: scale(1.05);
+    max-width: 30vw;
+}
+
+/* ===== Citation content ===== */
+#citation-content {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* ===== Hero bordered variant ===== */
+.hero-bordered {
+    border-top: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+}
+
+/* ===== Hero with side image (projects) ===== */
+.hero-body-relative {
+    position: relative;
+    overflow: hidden;
+}
+.hero-image-right {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-right: 1.5rem;
+}
+.hero-image-right img {
+    max-height: 100%;
+    max-width: 50vw;
+    object-fit: contain;
+}
+.hero-image-left {
+    height: 100%;
+    align-items: center;
+    padding-left: 1.5rem;
+}
+.hero-image-left img {
+    max-height: 100%;
+    max-width: 25vw;
+    object-fit: contain;
+}
+
+/* ===== Vertical fade mask ===== */
+.fade-vertical {
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 18%,
+        black 82%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 18%,
+        black 82%,
+        transparent 100%
+    );
+}
+
+/* ===== Paper/Project cards ===== */
+.paper-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(92, 92, 92, 0.75);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.paper-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 36px rgba(92, 92, 92, 0.5);
+}
+.paper-card .card-content {
+    flex-grow: 1;
+}
+.paper-card .card-footer {
+    justify-content: flex-end;
+}
+.colored-underline {
+    text-decoration: none;
+    border-bottom: 2px solid var(--bulma-link);
+    display: inline-block;
+    padding-bottom: 0.025em;
+}
+
+.paper-card-link {
+    display: block;
+}
+
+/* ===== Homepage Styles ===== */
+html { scroll-behavior: smooth; }
+.is-pill { border-radius: 50px !important; }
+.section { padding: 4rem 1.5rem; }
+.card {
+    border-radius: 20px;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    height: 100%;
+    transition: transform 0.2s;
+}
+.card:hover { transform: translateY(-5px); }
+.hero.is-medical {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+@media (max-width: 768px) {
+    .hero.is-medical {
+        background-position: -100pt 210pt !important;
+        background-size: 200%;
+    }
+}
+.hero.is-medical .hero-body {
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    padding-top: 4rem;
+    padding-left: 1rem;
+    width: 100%;
+}
+.navbar-item.is-active {
+    color: var(--lab-blue) !important;
+    font-weight: 700;
+}
+.footer {
+    background-color: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+}
+.news-date {
+    font-weight: 600;
+    color: var(--lab-blue);
+    font-size: 0.85rem;
+}
+.avatar-img {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--lab-light-blue);
+}
+
+/* Homepage bottom navbar */
+.navbar.is-transparent.container {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 60px);
+    z-index: 9999;
+    border-radius: 40px;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+}
+.navbar.is-transparent.container .navbar-item {
+    margin: 0.1rem 0.8rem;
+}
+.navbar-burger span { background-color: #ffffff; }
+.navbar-brand .navbar-item:not(:first-child) {
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+    padding: 0;
+}
+.navbar-brand .navbar-item:first-child {
+    margin-right: 0.1rem;
+    padding-right: 0;
+}
