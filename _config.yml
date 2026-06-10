@@ -107,4 +107,6 @@ theme: lab-theme
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: 'git'
+  repo: 'https://github.com/Tulane-Mettu-Landry-Lab/Tulane-Mettu-Landry-Lab.github.io.git'
+  branch: 'webpage'
