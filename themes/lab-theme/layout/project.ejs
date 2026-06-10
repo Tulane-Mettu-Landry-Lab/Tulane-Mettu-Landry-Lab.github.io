@@ -1,0 +1,199 @@
+<div class="navbar-container">
+<nav class="navbar custom-frosted-navbar" role="navigation" aria-label="main navigation">
+<div class="navbar-brand">
+<div class="navbar-item">
+<h1 class="is-size-5 has-text-weight-bold"><%= page.project.abbr %></h1>
+</div>
+</div>
+<div id="navbarMenu" class="navbar-menu">
+<div class="navbar-end is-flex-mobile">
+<div class="navbar-item is-flex-mobile">
+<div class="buttons has-addons is-centered" id="section-indicator-container"></div>
+</div>
+</div>
+</div>
+</nav>
+</div>
+
+<div class="hero is-small">
+<nav class="hero-body">
+<article class="media">
+<%
+var pageDir = page.path.substring(0, page.path.lastIndexOf('/') + 1);
+%>
+<span id="top-nav-icon">
+<% if (page.lab && page.lab.icon) { %>
+<figure class="media-left">
+<div class="logo-container" style="height:21pt;">
+<img src="<%- url_for(pageDir + page.lab.icon) %>" style="max-width: auto;height: 100%;display: block;">
+</div>
+</figure>
+<% } %>
+</span>
+<div class="media-content is-hidden-mobile">
+<h1 class="subtitle"><%= page.lab ? page.lab.name : '' %></h1>
+</div>
+<div class="media-content is-hidden-tablet">
+<h1 class="subtitle"><%= page.lab ? page.lab.name : '' %></h1>
+</div>
+</article>
+</nav>
+</div>
+
+<section class="hero is-bold is-halfheight mt-0">
+<div class="hero-body hero-body-relative">
+<div class="container hero-inner">
+<div class="content">
+<span id="paper-title-container">
+<h4 class="subtitle" style="font-weight: 400; color: #555;"><%= page.project.category %></h4>
+<h1 class="title mt-0"><%= page.project.title %></h1>
+</span>
+<p id="short-desc-container" class="is-dmserif mb-0"><%= page.project.desc %></p>
+</div>
+<nav class="breadcrumb is-small" aria-label="breadcrumbs">
+<ul id="breadcrumb-container">
+<%
+if (page.nav) {
+  var navKeys = Object.keys(page.nav);
+  navKeys.forEach(function(label, idx) {
+    var href = page.nav[label];
+    if (idx === navKeys.length - 1 || href === null) {
+%>
+<li class="is-active"><a aria-current="page"><%= label %></a></li>
+<%  } else { %>
+<li><a href="<%= href %>"><%= label %></a></li>
+<%
+    }
+  });
+}
+%>
+</ul>
+</nav>
+</div>
+<span id="paper-title-image-container">
+<% if (page.project.figure) { %>
+<div class="hero-image-right is-hidden-mobile fade-vertical">
+<img src="<%- url_for(pageDir + page.project.figure) %>" alt="Hero image">
+</div>
+<% } %>
+</span>
+</div>
+</section>
+
+<!-- Post-process content to fix relative image paths -->
+<!-- Hexo resolves markdown relative paths as root-relative, but we need page-relative -->
+<% var fixedContent = page.content; %>
+<% if (pageDir) { %>
+<%   var imgRegex = new RegExp('src="(?!https?:\\/\\/|\\/assets\\/|\\/css\\/|\\/js\\/)(\\/[^"]*)"', 'g'); %>
+<%   fixedContent = fixedContent.replace(imgRegex, function(match, p1) { return 'src="' + url_for(pageDir.replace(/\/$/, '') + p1) + '"'; }); %>
+<% } %>
+<section class="section">
+<div class="container is-max-desktop">
+<div class="content" id="markdown-output-container">
+  <%- fixedContent %>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container is-max-desktop">
+<div class="content">
+<h2 class="title is-4">Publications & Presentations</h2>
+</div>
+<div class="columns is-multiline" id="papers-container">
+<% if (page.papers) {
+  page.papers.forEach(function(paper) { %>
+<div class="column is-one-third-desktop is-full-mobile">
+<a href="<%= paper.link %>" class="paper-card-link">
+<div class="card paper-card is-dmserif">
+<div class="card-content">
+<p class="has-text-weight-bold colored-underline"><%= paper.year %> <%= paper.month %></p>
+<p class="title is-5 mt-2"><%= paper.title %></p>
+<p class="subtitle is-6 mt-1"><%= paper.publication %></p>
+<p class=""><%= paper.authors %></p>
+</div>
+</div>
+</a>
+</div>
+<%  });
+} %>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="content has-text-centered">
+<p><%= page.document ? page.document.footer : '' %></p>
+<p>Build <a href="https://github.com/Jiarui0923/paperpage">ProjectPage</a> for your project.</p>
+<a id="theme-toggle" class="button">
+<span class="icon"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</a>
+</div>
+</footer>
+
+<script>
+(function() {
+  var sectionData = [];
+  var isSectionDataReady = false;
+  var scrollTimeout;
+
+  function slugify(text) {
+    return text.toLowerCase().trim().replace(/[\s\W-]+/g, '-').replace(/^-+|-+$/g, '');
+  }
+
+  function extractSections() {
+    sectionData = [];
+    var mainContent = document.getElementById('markdown-output-container');
+    var scrollOffset = 150;
+    var usedIds = {};
+    if (mainContent) {
+      mainContent.querySelectorAll('h1, h2, h3').forEach(function(heading) {
+        var text = heading.textContent.trim();
+        if (!text) return;
+        var id = heading.id;
+        if (!id || usedIds[id]) {
+          id = slugify(text);
+          var uniqueId = id, counter = 1;
+          while (usedIds[uniqueId]) { uniqueId = id + '-' + (counter++); }
+          id = uniqueId;
+          heading.id = id;
+        }
+        usedIds[id] = true;
+        var rect = heading.getBoundingClientRect();
+        sectionData.push({ id: id, title: text, offsetTop: rect.top + window.scrollY - scrollOffset });
+      });
+    }
+    sectionData.sort(function(a, b) { return a.offsetTop - b.offsetTop; });
+    isSectionDataReady = sectionData.length > 0;
+    updateSectionIndicator();
+  }
+
+  function updateSectionIndicator() {
+    var container = document.getElementById('section-indicator-container');
+    if (!isSectionDataReady || !container) return;
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(function() {
+      var currentScroll = window.scrollY;
+      var activeIndex = 0;
+      for (var i = sectionData.length - 1; i >= 0; i--) {
+        if (currentScroll >= sectionData[i].offsetTop) { activeIndex = i; break; }
+      }
+      var curr = sectionData[activeIndex];
+      var prev = sectionData[activeIndex - 1];
+      var next = sectionData[activeIndex + 1];
+      var html = '';
+      if (prev) html += '<a class="button is-ghost section-nav-link is-prev" href="#' + prev.id + '"><i class="fa-solid fa-arrow-left"></i></a>';
+      html += '<a class="button is-ghost section-nav-link is-active" href="#' + curr.id + '">' + curr.title.toUpperCase() + '</a>';
+      if (next) html += '<a class="button is-ghost section-nav-link is-next" href="#' + next.id + '"><i class="fa-solid fa-arrow-right"></i></a>';
+      if (container.dataset.activeId !== curr.id) {
+        container.innerHTML = html;
+        container.dataset.activeId = curr.id;
+      }
+    }, 50);
+  }
+
+  extractSections();
+  window.addEventListener('scroll', updateSectionIndicator);
+  window.addEventListener('resize', extractSections);
+})();
+</script>

@@ -1,0 +1,102 @@
+<div class="navbar-container is-hidden">
+<nav class="navbar custom-frosted-navbar" role="navigation" aria-label="main navigation">
+<div class="navbar-brand">
+<div class="navbar-item">
+<h1 class="is-size-5 has-text-weight-bold">Projects</h1>
+</div>
+</div>
+</nav>
+</div>
+
+<div class="hero is-small">
+<nav class="hero-body">
+<article class="media">
+<%
+var listPageDir = page.path.substring(0, page.path.lastIndexOf('/') + 1);
+%>
+<span id="top-nav-icon">
+<% if (page.lab && page.lab.icon) { %>
+<figure class="media-left">
+<div class="logo-container" style="height:21pt;">
+<img src="<%- page.lab.icon.startsWith('/') ? url_for(page.lab.icon) : url_for(listPageDir + page.lab.icon) %>" style="max-width: auto;height: 100%;display: block;">
+</div>
+</figure>
+<% } %>
+</span>
+<div class="media-content is-hidden-mobile">
+<h1 class="subtitle"><%= page.lab ? page.lab.name : '' %></h1>
+</div>
+<div class="media-content is-hidden-tablet">
+<h1 class="subtitle"><%= page.lab ? page.lab.name : '' %></h1>
+</div>
+</article>
+</nav>
+</div>
+
+<section class="hero is-bold is-halfheight mt-0">
+<div class="hero-body hero-body-relative">
+<div class="container hero-inner">
+<div class="content">
+<h4 class="subtitle" style="font-weight: 400; color: #555;"><%= page.page ? page.page.subtitle : '' %></h4>
+<h1 class="title mt-0"><%= page.page ? page.page.title : '' %></h1>
+<p class="is-dmserif mb-0"><%= page.page ? page.page.desc : '' %></p>
+</div>
+<nav class="breadcrumb is-small" aria-label="breadcrumbs">
+<ul id="breadcrumb-container">
+<%
+if (page.nav) {
+  var navKeys = Object.keys(page.nav);
+  navKeys.forEach(function(label, idx) {
+    var href = page.nav[label];
+    if (idx === navKeys.length - 1 || href === null) {
+%>
+<li class="is-active"><a aria-current="page"><%= label %></a></li>
+<%  } else { %>
+<li><a href="<%= href %>"><%= label %></a></li>
+<%
+    }
+  });
+}
+%>
+</ul>
+</nav>
+</div>
+</div>
+</section>
+
+<span id="project-info-container">
+<% if (page.projects) {
+  page.projects.forEach(function(proj) { %>
+<section class="hero is-bold is-halfheight mt-0">
+<div class="hero-body hero-body-relative">
+<% if (proj.figure) { %>
+<div class="hero-image-left is-hidden-mobile fade-vertical">
+<img src="<%- proj.figure.startsWith('/') ? url_for(proj.figure) : url_for(listPageDir + proj.figure) %>" alt="Hero image">
+</div>
+<% } %>
+<div class="container hero-inner">
+<div class="content">
+<h4 class="subtitle" style="font-weight: 400; color: #555;"><%= proj.category %></h4>
+<h1 class="title mt-0 mb-2"><%= proj.title %></h1>
+<p class="is-dmserif mt-0"><%= proj.desc %></p>
+<a class="button is-ghost" href="<%= proj.link %>">
+<span>Check more details about <%= proj.abbr %></span>
+<span class="icon is-small"><i class="fas fa-solid fa-right-long"></i></span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<%  });
+} %>
+</span>
+
+<footer class="footer">
+<div class="content has-text-centered">
+<p><%= page.document ? page.document.footer : '' %></p>
+<p>Build <a href="https://github.com/Jiarui0923/paperpage">ProjectPage</a> for your project.</p>
+<a id="theme-toggle" class="button">
+<span class="icon"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</a>
+</div>
+</footer>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="<%- url_for('/assets/images/favicon.ico') %>" type="image/x-icon">
+<title><%= page.title %></title>
+
+<!-- Bulma -->
+<link rel="stylesheet" href="<%= theme.bulma_css %>">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="<%= theme.fontawesome_css %>">
+
+<!-- Academicons -->
+<link rel="stylesheet" href="<%= theme.academicons_css %>">
+
+<!-- Google Fonts -->
+<% theme.google_fonts.forEach(function(font) { %>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?<%= font %>&display=swap">
+<% }); %>
+
+<!-- Theme CSS -->
+<link rel="stylesheet" href="<%- url_for('/css/style.css') %>">
+
+<!-- jQuery -->
+<script src="<%= theme.jquery_js %>"></script>
+
+<!-- Marked (markdown rendering) -->
+<script src="<%= theme.marked_js %>"></script>
+<script src="<%= theme.marked_base_url_js %>"></script>
+
+<!-- QR Code -->
+<script src="<%= theme.qrcode_js %>"></script>
+
+<%- partial('_partial/head') %>
+</head>
+<body>
+<%- body %>
+
+<!-- Theme JS -->
+<%- partial('_partial/theme-js') %>
+</body>
+</html>

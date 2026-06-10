@@ -1,0 +1,156 @@
+<!-- Navbar -->
+<nav class="navbar is-transparent container" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <% if (site.data.home && site.data.home.main && site.data.home.main.icons) {
+      site.data.home.main.icons.forEach(function(icon) { %>
+        <a class="navbar-item" href="<%= icon.link || '#' %>">
+          <img src="<%- url_for(icon.img) %>">
+        </a>
+      <% });
+    } %>
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div id="navMenu" class="navbar-menu">
+    <div class="navbar-end">
+      <a class="navbar-item" href="#about">About</a>
+      <a class="navbar-item" href="#projects">Projects</a>
+      <a class="navbar-item" href="#team">Team</a>
+    </div>
+  </div>
+</nav>
+
+<%
+var data = site.data.home || {};
+%>
+
+<!-- Hero -->
+<section id="home" class="hero is-fullheight is-medical" style="background-image: url('<%- data.main && data.main.bgimg ? url_for(data.main.bgimg) : '' %>');">
+  <div class="hero-body container" style="width: 100%;">
+    <div class="columns" style="width: 100%;">
+      <div class="column is-7">
+        <div class="content">
+          <% if (data.main && data.main.icons && data.main.icons[0]) { %>
+            <img class="mb-0" src="<%- url_for(data.main.icons[0].img) %>" width="146px"></img>
+          <% } %>
+          <h1 class="title is-1 has-text-weight-bold mt-0" style="width:100%"><%= data.main ? data.main.title : '' %></h1>
+          <p class="subtitle is-5 has-text-grey-darker"><%= data.main ? data.main.desc : '' %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="container">
+
+<!-- About & News -->
+<section id="about" class="section container">
+  <div class="columns mb-6">
+    <div class="column is-8">
+      <h2 class="title is-2"><%= data.about ? data.about.title : '' %></h2>
+      <div class="content is-medium has-text-grey">
+        <%- data.about ? data.about.desc : '' %>
+      </div>
+    </div>
+  </div>
+  <h3 class="title is-4 mb-5"><%= data.news ? data.news.title : '' %></h3>
+  <div class="columns">
+    <% if (data.news && data.news.items) {
+      data.news.items.forEach(function(item) { %>
+        <div class="column is-4">
+          <div class="card">
+            <div class="card-content">
+              <p class="news-date"><%= item.date %></p>
+              <p class="title is-5 mt-2"><%= item.title %></p>
+              <p class="has-text-grey"><%= item.desc %></p>
+              <% if (item.link) { %>
+                <a href="<%= item.link %>" class="has-text-link">More Details ➔</a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      <% });
+    } %>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects" class="section has-background-white-bis">
+  <div class="container">
+    <h2 class="title is-2 mb-6"><%= data.project ? data.project.title : '' %></h2>
+    <div class="columns is-multiline">
+      <% if (data.project && data.project.items) {
+        data.project.items.forEach(function(item) { %>
+          <div class="column is-4">
+            <div class="card">
+              <div class="card-content">
+                <h5 class="subtitle is-6 has-text-link"><%= item.tag %></h5>
+                <h4 class="title is-5"><%= item.title %></h4>
+                <p class="mb-4"><%= item.desc %></p>
+                <a href="<%= item.link %>" class="has-text-link has-text-weight-bold">Project Details ➔</a>
+              </div>
+            </div>
+          </div>
+        <% });
+      } %>
+    </div>
+    <div class="has-text-centered mt-6">
+      <a href="<%= data.project && data.project.listlink ? data.project.listlink : '#' %>" class="button is-link is-outlined is-rounded">View Full Project List</a>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<section id="team" class="section container">
+  <h2 class="title is-2 mb-6">Our Team</h2>
+  <div class="columns is-multiline">
+    <% if (data.team && data.team.people) {
+      data.team.people.forEach(function(p) { %>
+        <div class="column is-3 has-text-centered">
+          <img src="<%- url_for(p.avatar) %>" class="avatar-img mb-3" alt="<%= p.name %>">
+          <h4 class="title is-5"><%= p.name %></h4>
+          <p class="subtitle is-6 has-text-grey mb-0"><%= p.role %></p>
+          <a class="button is-text has-text-link is-small" href="<%= p.link || '#' %>">Home Page</a>
+        </div>
+      <% });
+    } %>
+  </div>
+  <% if (data.team && data.team.join && !data.team.join.hidden) { %>
+    <div id="contact" class="box p-6 mt-6" style="border-radius: 25px; border-width: 15px;">
+      <div class="columns is-vcentered">
+        <div class="column">
+          <h3 class="title is-5 mb-2"><%= data.team.join.title %></h3>
+          <p class="is-size-6"><%= data.team.join.info %></p>
+        </div>
+        <div class="column is-narrow has-text-right">
+          <p class="mb-1"><strong>Email:</strong> <%= data.team.join.mail %></p>
+          <a class="button is-link is-pill" href="<%= data.team.join.link %>">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  <% } %>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="content has-text-centered">
+    <% if (data.footer && data.footer.note) { %>
+      <p><%- data.footer.note %></p>
+    <% } %>
+  </div>
+</footer>
+
+<!-- Homepage burger menu JS -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var burgers = Array.from(document.querySelectorAll('.navbar-burger'));
+  burgers.forEach(function(el) {
+    el.addEventListener('click', function() {
+      var target = document.getElementById(el.dataset.target);
+      el.classList.toggle('is-active');
+      target.classList.toggle('is-active');
+    });
+  });
+});
+</script>

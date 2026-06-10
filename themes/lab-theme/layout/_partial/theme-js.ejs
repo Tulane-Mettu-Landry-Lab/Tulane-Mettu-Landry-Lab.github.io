@@ -1,0 +1,49 @@
+<script>
+// Theme management
+var theme = localStorage.getItem('theme') || 'auto';
+
+function updateThemeButton() {
+    var toggle = document.getElementById('theme-toggle');
+    if (!toggle) return;
+    var icon = toggle.querySelector('.icon i');
+    icon.classList.remove('fa-sun', 'fa-moon', 'fa-circle-half-stroke');
+    if (theme === 'light') icon.classList.add('fa-sun');
+    else if (theme === 'dark') icon.classList.add('fa-moon');
+    else icon.classList.add('fa-circle-half-stroke');
+}
+
+function applyTheme() {
+    if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    else if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    else document.documentElement.removeAttribute('data-theme');
+    updateThemeButton();
+    localStorage.setItem('theme', theme);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    applyTheme();
+    var toggle = document.getElementById('theme-toggle');
+    if (toggle) {
+        toggle.addEventListener('click', function() {
+            if (theme === 'auto') theme = 'light';
+            else if (theme === 'light') theme = 'dark';
+            else theme = 'auto';
+            applyTheme();
+        });
+    }
+});
+
+// Smooth scroll for anchor links
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+            var targetId = this.getAttribute('href').substring(1);
+            var targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+});
+</script>

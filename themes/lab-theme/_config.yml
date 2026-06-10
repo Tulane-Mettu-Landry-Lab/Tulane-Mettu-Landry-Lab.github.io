@@ -1,0 +1,15 @@
+# Lab Theme Configuration
+# Fonts & CDN
+google_fonts:
+  - family=DM+Serif+Text:ital@0;1
+  - family=Inter:wght@400;600;700
+  - family=JetBrains+Mono
+
+# CDN URLs
+bulma_css: https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css
+fontawesome_css: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css
+academicons_css: https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css
+jquery_js: https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js
+marked_js: https://cdn.jsdelivr.net/npm/marked
+marked_base_url_js: https://cdn.jsdelivr.net/npm/marked-base-url
+qrcode_js: https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js
