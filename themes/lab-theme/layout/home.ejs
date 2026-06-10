@@ -29,7 +29,7 @@ var data = site.data.home || {};
 <section id="home" class="hero is-fullheight is-medical" style="background-image: url('<%- data.main && data.main.bgimg ? url_for(data.main.bgimg) : '' %>');">
   <div class="hero-body container" style="width: 100%;">
     <div class="columns" style="width: 100%;">
-      <div class="column is-7">
+      <div class="column is-8">
         <div class="content">
           <% if (data.main && data.main.icons && data.main.icons[0]) { %>
             <img class="mb-0" src="<%- url_for(data.main.icons[0].img) %>" width="146px"></img>

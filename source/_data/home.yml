@@ -7,7 +7,7 @@ main:
     - img: "/assets/images/tulane.png"
       link: "https://tulane.edu/"
   desc: "Discover Underly Scientific Mechanisms with Explainable Machine Learning."
-  bgimg: "/assets/images/background.png"
+  bgimg: "/assets/images/background_blur.png"
 
 about:
   title: "About This Lab"

@@ -152,13 +152,24 @@ The `public/` directory contains the fully static site ready for deployment to G
 
 ### GitHub Pages Deployment
 
-If using GitHub Actions (recommended), add a workflow that:
-1. Checks out the repository
-2. Runs `npm install && npx hexo generate`
-3. Deploys `public/` to the `gh-pages` branch or sets it as the Pages source
+The deploy config in `_config.yml` is already set to push to the `webpage` branch:
 
-Or deploy manually:
-```bash
-npx hexo deploy
+```yaml
+deploy:
+  type: 'git'
+  repo: 'https://github.com/Tulane-Mettu-Landry-Lab/Tulane-Mettu-Landry-Lab.github.io.git'
+  branch: 'webpage'
 ```
-(Configure the `deploy` section in `_config.yml` first.)
+
+To deploy, run:
+
+```bash
+npx hexo clean && npx hexo deploy --generate
+```
+
+This will:
+1. Clean old output
+2. Regenerate the static site in `public/`
+3. Push `public/` to the `webpage` branch via `hexo-deployer-git`
+
+Make sure your git credentials are set up for the repository before deploying.
